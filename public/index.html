@@ -14,6 +14,37 @@
     <title>Pet Tracker</title>
 </head>
 <body>
-    
+    <main>
+        <h1>Pet Tracker</h1>
+        <form aria-labelledby="form-heading" id = "petForm">
+        <h2>Add a new Pet!</h2>
+        <label for = "pet-name">Pet Name<sup> *</sup> :</label>
+        <input type = "text" id = "pet-name" name = "petName" required/>
+        <label for = "profile-pic">Profile Picture<sup> *</sup> :</label>
+        <input type = "text" id = "profile-pic" name = "profilePic" placeholder="Picture URL" required/>
+
+        <fieldset>
+            <legend>Species<sup> *</sup></legend>
+            <input type = "radio" id = "cat" name = "species" value = "cat" required/>
+            <label for = "cat">Cat</label>
+            <br>
+            <input type = "radio" id = "dog" name = "species" value = "dog"/>
+            <label for = "dog">Dog</label>
+            <br>
+            <input type = "radio" id = "bird" name = "species" value = "bird" />
+            <label for = "bird">Bird</label>
+        </fieldset>
+
+        <input type ='checkbox' name = 'isFriendly' id = 'is-friendly'>
+        <label for = 'is-friendly'>Are they friendly?</label>
+
+        <button>Add Pet!</button>
+        </form>
+        <section aria-labelledby="list-heading">
+            <h2>Pet List</h2>
+            <ul id = "pet-list">
+            </ul>
+        </section>
+    </main>  
 </body>
 </html>

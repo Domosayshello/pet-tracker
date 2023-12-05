@@ -7,9 +7,11 @@
 exports.up = function (knex) {
     return knex.schema.createTable('example_resources', (table) => {
       table.increments(); // this is the id
-      table.string('title'); // text
-      table.integer('priority'); // integer
-      table.boolean('is_done').defaultTo(false); // boolean, optional default
+      table.string('pet_name'); // text
+      table.string('picture_url'); // text
+      table.string('species'); // text
+      // table.integer('priority'); // integer
+      table.boolean('is_friendly').defaultTo(false); // boolean, optional default
   
       /* add a foreign key that links to a hypothetical users table */
       // You must first have created a users table with a key called id!

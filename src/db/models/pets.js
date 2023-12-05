@@ -1,7 +1,8 @@
 const knex = require('./knex');
 
-class Example {
-  // This is just an example query, obviously you need to change it, but it shows you how to use knex.raw and dynamic values
+class Pet {
+  
+
   static async create(data) {
     try {
       const query = `INSERT INTO examples (data) values (?) returning *`;
@@ -16,4 +17,4 @@ class Example {
 
 
 
-module.exports = Example;
+module.exports = Pet;
