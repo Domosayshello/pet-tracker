@@ -6,9 +6,12 @@
  * @returns { Promise<void> }
  */
 
-const Pet = require('../src/models/pets')
+
 exports.seed = async (knex) => {
     // Deletes ALL existing entries (you can just use knex and delete everything)
-    await knex('pets').del();
+    await knex('pets_table').del();
     // Now run your logic to create your resources with your models
+    await knex('pets_table').insert([
+      {id: 1, pet_name: 'hi', picture_url: 'url', species: 'dog', is_friendly: true}
+    ])
   };

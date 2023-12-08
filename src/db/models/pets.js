@@ -2,13 +2,35 @@ const knex = require('./knex');
 
 class Pet {
   
+  static async list() {
+    try{
+      const query = `SELECT * FROM pets_table`;
+      const res = await knex.raw(query)
+      console.log(res)
+      return res.rows;
+    } catch (err){
+      console.error(err);
+      return null;
+    }
+  }
 
-  static async create(data) {
+  static async create(name, picture_url, species, is_friendly) {
     try {
-      const query = `INSERT INTO examples (data) values (?) returning *`;
-      const { rows: [newToDo] } = await knex.raw(query, [data]);
-      return newToDo;
+      const query = `INSERT INTO pets_table (pet_name, picture_url, species, is_friendly) values (?, ?, ?, ?) RETURNING *`;
+      const { rows: [newPet] } = await knex.raw(query, [name, picture_url, species, is_friendly]);
+      return newPet;
     } catch (err) {
+      console.error(err);
+      return null;
+    }
+  }
+
+  static async delete(id) {
+    try {
+      const query = `DELETE FROM books WHERE id = ?`;
+      const { rows } = await knex.raw(query, [id]);
+      return !!rows;
+    } catch {
       console.error(err);
       return null;
     }

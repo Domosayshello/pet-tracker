@@ -5,7 +5,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-    return knex.schema.createTable('example_resources', (table) => {
+    return knex.schema.createTable('pets_table', (table) => {
       table.increments(); // this is the id
       table.string('pet_name'); // text
       table.string('picture_url'); // text
@@ -25,5 +25,5 @@ exports.up = function (knex) {
    * @returns { Promise<void> }
    */
   exports.down = function (knex) {
-    return knex.schema.dropTable('example_resources');
+    return knex.schema.dropTable('pets_table');
   };
