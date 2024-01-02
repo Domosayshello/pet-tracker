@@ -27,9 +27,9 @@ class Pet {
 
   static async delete(id) {
     try {
-      const query = `DELETE FROM books WHERE id = ?`;
+      const query = `DELETE FROM pets_table WHERE id = ?`;
       const { rows } = await knex.raw(query, [id]);
-      return !!rows;
+      return null;
     } catch {
       console.error(err);
       return null;

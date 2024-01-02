@@ -22,6 +22,11 @@ app.post('/api', async (req, res) => {
     res.send(newPet).status(201);
 });
 
+app.delete('/deletepet:id', async (req,res) => {
+   const { id } = req.params;
+   console.log(id)
+   await Pet.delete(id);
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
