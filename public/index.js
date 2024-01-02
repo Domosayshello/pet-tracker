@@ -15,6 +15,13 @@ const handleSubmit = (e) => {
       })
       .then(res => res.json())
       .then(data => console.log(data))
+
+}
+
+const createPetCard = (obj) => {
+  fetch('/test')
+  .then((res) => res.json())
+  .then((data) => console.log(data));
 }
 
 petForm.addEventListener('submit', handleSubmit);
