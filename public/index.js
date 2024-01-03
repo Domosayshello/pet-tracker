@@ -1,21 +1,18 @@
 const petForm = document.querySelector('#petForm');
 const petList = document.querySelector('#pet-list');
-// const Pet = require('../src/models/pets')
 
 const createPetCard = (obj) => {
   console.log(obj.id)
   const liEl = document.createElement('li');
+
   const h3 = document.createElement('h3');
   h3.textContent = `${obj.pet_name}`
 
   const img = document.createElement('img');
   img.src = `${obj.picture_url}`
+
   const isFriendly = document.createElement('p');
-  if(obj.isFriendly){
-    isFriendly.textContent = `Friendly!`
-  } else {
-    isFriendly.textContent = `Not so friendly...`
-  }
+  obj.isFriendly ? isFriendly.textContent = `Friendly!` : isFriendly.textContent = `Not so friendly...`
 
   const species = document.createElement('p');
   species.textContent = `${obj.species}`
@@ -30,7 +27,7 @@ const createPetCard = (obj) => {
     } )
 
   liEl.append(h3, img, isFriendly,species, button)
-    return liEl;
+  return liEl;
 }
 
 const handleSubmit = (e) => {
@@ -38,8 +35,7 @@ const handleSubmit = (e) => {
     const formData = new FormData(e.target);
     const obj = Object.fromEntries(formData);
     obj.isFriendly = obj.isFriendly === 'on';
-    console.log(obj);
-
+    // console.log(obj);
 
     fetch('/api',{
         method : "POST", 
@@ -55,13 +51,11 @@ const handleSubmit = (e) => {
 }
 
 const main = () => {
- 
-
+  fetch('/test')
+  .then((res) => res.json())
+  .then((data) => data.forEach(pet => petList.append(createPetCard(pet))));
+  
   petForm.addEventListener('submit', handleSubmit);
 }
 
 main();
-
-fetch('/test')
-.then((res) => res.json())
-.then((data) => data.forEach(pet => petList.append(createPetCard(pet))));
