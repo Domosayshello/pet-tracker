@@ -10,7 +10,6 @@ exports.up = function (knex) {
       table.string('pet_name'); // text
       table.string('picture_url'); // text
       table.string('species'); // text
-      // table.integer('priority'); // integer
       table.boolean('is_friendly').defaultTo(false); // boolean, optional default
   
       /* add a foreign key that links to a hypothetical users table */

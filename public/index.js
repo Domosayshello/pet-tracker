@@ -2,7 +2,6 @@ const petForm = document.querySelector('#petForm');
 const petList = document.querySelector('#pet-list');
 
 const createPetCard = (obj) => {
-  console.log(obj.id)
   const liEl = document.createElement('li');
 
   const h3 = document.createElement('h3');
@@ -12,8 +11,8 @@ const createPetCard = (obj) => {
   img.src = `${obj.picture_url}`
 
   const isFriendly = document.createElement('p');
-  obj.isFriendly ? isFriendly.textContent = `Friendly!` : isFriendly.textContent = `Not so friendly...`
-
+  isFriendly.textContent =  obj.is_friendly ? `Friendly!` : `Not so friendly...`
+  
   const species = document.createElement('p');
   species.textContent = `${obj.species}`
 
@@ -25,8 +24,7 @@ const createPetCard = (obj) => {
       })
         liEl.remove()
     } )
-
-  liEl.append(h3, img, isFriendly,species, button)
+  liEl.append(h3, img, isFriendly, species, button)
   return liEl;
 }
 
@@ -35,8 +33,7 @@ const handleSubmit = (e) => {
     const formData = new FormData(e.target);
     const obj = Object.fromEntries(formData);
     obj.isFriendly = obj.isFriendly === 'on';
-    // console.log(obj);
-
+  
     fetch('/api',{
         method : "POST", 
         headers: {
@@ -46,15 +43,13 @@ const handleSubmit = (e) => {
       })
       .then(res => res.json())
       .then(data => petList.append(createPetCard(data)))
-
     e.target.reset();
 }
 
 const main = () => {
-  fetch('/test')
+  fetch('/getAllPets')
   .then((res) => res.json())
   .then((data) => data.forEach(pet => petList.append(createPetCard(pet))));
-  
   petForm.addEventListener('submit', handleSubmit);
 }
 

@@ -1,7 +1,6 @@
 const knex = require('./knex');
 
 class Pet {
-  
   static async list() {
     try{
       const query = `SELECT * FROM pets_table`;
@@ -36,7 +35,5 @@ class Pet {
     }
   }
 }
-
-
 
 module.exports = Pet;
